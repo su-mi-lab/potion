@@ -7,6 +7,7 @@ defmodule Potion.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: "potion",
      package: [
        maintainers: ["Yuta Sumiyoshi"],
        licenses: ["MIT"],
@@ -20,6 +21,6 @@ defmodule Potion.Mixfile do
   end
 
   defp deps do
-    []
+    [{:ex_doc, ">= 0.0.0", only: :dev}]
   end
 end
