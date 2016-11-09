@@ -1,12 +1,9 @@
 defprotocol Potion.Empty do
-  @doc """
-  ## Examples
-  """
   @spec empty?(any) :: boolean
   def empty?(data)
 end
 
-defimpl Potion.Empty, for: [Integer, Float, Atom, Function, PID, Port] do
+defimpl Potion.Empty, for: [Integer, Float, Function, PID, Port] do
   def empty?(_), do: false
 end
 
@@ -20,7 +17,14 @@ defimpl Potion.Empty, for: Map do
 end
 
 defimpl Potion.Empty, for: BitString do
-  def empty?(str), do: (str |> String.trim() |> String.length) == 0
+  def empty?(""), do: true
+  def empty?(_),  do: false
+end
+
+defimpl Potion.Empty, for: Atom do
+  def empty?(:false), do: true
+  def empty?(nil),   do: true
+  def empty?(_),     do: false
 end
 
 defimpl Potion.Empty, for: Tuple do

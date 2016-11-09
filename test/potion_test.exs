@@ -7,6 +7,9 @@ defmodule PotionTest do
     assert Potion.empty?(%{}) == true
     assert Potion.empty?({}) == true
     assert Potion.empty?("") == true
+    assert Potion.empty?(false) == true
+    assert Potion.empty?(:false) == true
+    assert Potion.empty?(nil) == true
 
     assert Potion.empty?([1,2]) == false
     assert Potion.empty?(%{map: "some content"}) == false
@@ -14,14 +17,14 @@ defmodule PotionTest do
     assert Potion.empty?("some content") == false
     assert Potion.empty?(1) == false
     assert Potion.empty?(1.0) == false
-    assert Potion.empty?(:test) == false
+    assert Potion.empty?(true) == false
+    assert Potion.empty?(:true) == false
   end
 
   test "test Potion get" do
     assert Potion.get([1,2,3], 0) == 1
     assert Potion.get({1,2,3}, 0) == 1
     assert Potion.get(%{map: "some content"}, :map) == "some content"
-
 
     assert Potion.get([1,2,3], 4) == nil
     assert Potion.get({1,2,3}, 4) == nil
