@@ -1,6 +1,5 @@
 defmodule Potion do
 
-
   @doc """
 
   Determines if the value is empty.
@@ -41,21 +40,84 @@ defmodule Potion do
   @doc """
   ## Examples
 
-      iex> Potion.empty?(Potion.get([1,2,3], 0))
+      iex> Potion.get([1,2,3], 0)
       1
-      iex> Potion.empty?(Potion.get([1,2,3], 4))
+      iex> Potion.get([1,2,3], 4)
       nil
-      iex> Potion.empty?(Potion.get({1,2,3}, 0))
+      iex> Potion.get({1,2,3}, 0)
       1
       iex> Potion.get(%{map: "some content"}, :map)
       "some content"
-      iex> Potion.empty?(Potion.get([1,2,3], 4, 0))
+      iex> Potion.get([1,2,3], 4, 0)
       0
-
   """
   @spec get(any, String.t | Integer.t | Atom.t, any) :: any
   def get(data, key, default \\ nil) do
     Potion.Collection.get(data, key, default)
+  end
+
+  @doc """
+  ## Examples
+
+      iex> assert Potion.trim([1,"",3])
+      [1,3]
+      iex> Potion.trim(%{map: "some content", map2: ""})
+      %{map: "some content"}
+      iex> Potion.trim({1, ""})
+      {1}
+
+  """
+  @spec trim(Map.t | List.t | Tuple.t) :: Map.t | List.t | Tuple.t
+  def trim(data) do
+    Potion.Collection.trim(data)
+  end
+
+  @doc """
+  ## Examples
+
+      iex> Potion.put([1], 2)
+      [1,2]
+      iex> Potion.put([1], [2])
+      [1,2]
+      iex> Potion.put(%{map: "some content"}, add: "some content")
+      %{map: "some content", add: "some content"}
+      iex> Potion.put(%{map: "some content"}, [add: "some content"])
+      %{map: "some content", add: "some content"}
+      iex> Potion.put(%{map: "some content"}, %{add: "some content"})
+      %{map: "some content", add: "some content"}
+      iex> Potion.put(%{map: "some content"}, %{map: "some content!"})
+      %{map: "some content!"}
+      iex> Potion.put({1,2,3}, 4)
+      {1,2,3,4}
+
+  """
+  @spec put(Map.t | List.t | Tuple.t, any) :: Map.t | List.t | Tuple.t
+  def put(data, item) do
+    Potion.Collection.put(data, item)
+  end
+
+  @doc """
+  ## Examples
+
+      iex> Potion.put_first([1], 2)
+      [2,1]
+      iex> Potion.put_first([1], [2])
+      [2,1]
+      iex> Potion.put_first(%{map: "some content"}, add: "some content")
+      %{add: "some content", map: "some content"}
+      iex> Potion.put_first(%{map: "some content"}, [add: "some content"])
+      %{add: "some content", map: "some content"}
+      iex> Potion.put_first(%{map: "some content"}, %{add: "some content"})
+      %{add: "some content", map: "some content"}
+      iex> Potion.put_first(%{map: "some content"}, %{map: "some content!"})
+      %{map: "some content"}
+      iex> Potion.put_first({1,2,3}, 4)
+      {4,1,2,3}
+
+  """
+  @spec put_first(Map.t | List.t | Tuple.t, any) :: Map.t | List.t | Tuple.t
+  def put_first(data, item) do
+    Potion.Collection.put_first(data, item)
   end
 
 end

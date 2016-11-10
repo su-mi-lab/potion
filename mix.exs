@@ -3,7 +3,7 @@ defmodule Potion.Mixfile do
 
   def project do
     [app: :potion,
-     version: "0.0.2",
+     version: "0.0.3",
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -11,7 +11,7 @@ defmodule Potion.Mixfile do
      package: [
        maintainers: ["Yuta Sumiyoshi"],
        licenses: ["MIT"],
-       links: %{"GitHub" => "https://github.com/sumiyoshi/potion"}
+       links: %{"GitHub" => "https://github.com/su-mi-lab/potion"}
      ],
      deps: deps()]
   end
