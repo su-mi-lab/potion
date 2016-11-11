@@ -46,12 +46,14 @@ defmodule Potion do
       nil
       iex> Potion.get({1,2,3}, 0)
       1
+      iex> Potion.get({:ok, "some content"}, :ok)
+      "some content"
       iex> Potion.get(%{map: "some content"}, :map)
       "some content"
       iex> Potion.get([1,2,3], 4, 0)
       0
   """
-  @spec get(any, String.t | Integer.t | Atom.t, any) :: any
+  @spec get(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t, any) :: any
   def get(data, key, default \\ nil) do
     Potion.Collection.get(data, key, default)
   end
@@ -118,6 +120,50 @@ defmodule Potion do
   @spec put_first(Map.t | List.t | Tuple.t, any) :: Map.t | List.t | Tuple.t
   def put_first(data, item) do
     Potion.Collection.put_first(data, item)
+  end
+
+  @doc """
+  ## Examples
+
+      iex> Potion.unset([1,2], 0)
+      [2]
+      iex> Potion.unset(%{a: 1, b: 2}, :a)
+      %{b: 2}
+      iex> Potion.unset({1,2}, 0)
+      {2}
+      iex> Potion.unset([1,2], [0,1])
+      []
+      iex> Potion.unset(%{a: 1, b: 2}, [:a, :b])
+      %{}
+      iex> Potion.unset({1,2}, [1,2])
+      {1}
+
+  """
+  @spec unset(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t | List.t) :: any
+  def unset(data, key) do
+    Potion.Collection.unset(data, key)
+  end
+
+  @doc """
+  ## Examples
+
+      iex> Potion.unset_value([1,2], 2)
+      [1]
+      iex> Potion.unset_value([1,2], [0,1])
+      [2]
+      iex> Potion.unset_value(%{a: 1, b: 2}, 1)
+      %{b: 2}
+      iex> Potion.unset_value(%{a: 1, b: 2}, [1, 2])
+      %{}
+      iex> Potion.unset_value({1,2}, 2)
+      {1}
+      iex> Potion.unset_value({1,2}, [1,2])
+      {}
+
+  """
+  @spec unset_value(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t | List.t) :: any
+  def unset_value(data, value) do
+    Potion.Collection.unset_value(data, value)
   end
 
 end
