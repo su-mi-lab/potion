@@ -55,7 +55,7 @@ defimpl Potion.Collection, for: List do
   end
 
   def unset(list, keys) when is_list(keys) do
-    Enum.reduce(Enum.reverse(keys), list, fn(key, acc) ->
+    Enum.reduce(keys |> Enum.sort |> Enum.reverse, list, fn(key, acc) ->
       List.delete_at(acc, key)
     end)
   end
