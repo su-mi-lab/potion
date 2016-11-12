@@ -2,34 +2,34 @@ defmodule Potion do
 
   @doc """
 
-  Determines if the value is empty.
+  check empty
 
   ## Examples
 
-      iex> Potion.empty?([])
+      Potion.empty?([])
       true
-      iex> Potion.empty?(%{})
+      Potion.empty?(%{})
       true
-      iex> Potion.empty?({})
+      Potion.empty?({})
       true
-      iex> Potion.empty?("")
+      Potion.empty?("")
       true
-      iex> Potion.empty?(nil)
+      Potion.empty?(nil)
       true
-      iex> Potion.empty?(false)
+      Potion.empty?(false)
       true
 
-      iex> Potion.empty?([1,2])
+      Potion.empty?([1,2])
       false
-      iex> Potion.empty?(%{map: "some content"})
+      Potion.empty?(%{map: "some content"})
       false
-      iex> Potion.empty?({1, 2})
+      Potion.empty?({1, 2})
       false
-      iex> Potion.empty?("some content")
+      Potion.empty?("some content")
       false
-      iex> Potion.empty?(1)
+      Potion.empty?(1)
       false
-      iex> Potion.empty?(true)
+      Potion.empty?(true)
       false
   """
   @spec empty?(any) :: boolean
@@ -38,19 +38,24 @@ defmodule Potion do
   end
 
   @doc """
+
+  Gets the value for a specific key
+
   ## Examples
 
-      iex> Potion.get([1,2,3], 0)
+      Potion.get([1,2,3], 0)
       1
-      iex> Potion.get([1,2,3], 4)
+      Potion.get([1,2,3], 4)
       nil
-      iex> Potion.get({1,2,3}, 0)
+      Potion.get({1,2,3}, 0)
       1
-      iex> Potion.get({:ok, "some content"}, :ok)
+      Potion.get([index: 1, index2: 2], :index2)
+      2
+      Potion.get({:ok, "some content"}, :ok)
       "some content"
-      iex> Potion.get(%{map: "some content"}, :map)
+      Potion.get(%{map: "some content"}, :map)
       "some content"
-      iex> Potion.get([1,2,3], 4, 0)
+      Potion.get([1,2,3], 4, 0)
       0
   """
   @spec get(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t, any) :: any
@@ -59,13 +64,16 @@ defmodule Potion do
   end
 
   @doc """
+
+  Collection trim
+
   ## Examples
 
-      iex> assert Potion.trim([1,"",3])
+      Potion.trim([1,"",3])
       [1,3]
-      iex> Potion.trim(%{map: "some content", map2: ""})
+      Potion.trim(%{map: "some content", map2: ""})
       %{map: "some content"}
-      iex> Potion.trim({1, ""})
+      Potion.trim({1, ""})
       {1}
 
   """
@@ -75,21 +83,24 @@ defmodule Potion do
   end
 
   @doc """
+
+  Puts the given value
+
   ## Examples
 
-      iex> Potion.put([1], 2)
+      Potion.put([1], 2)
       [1,2]
-      iex> Potion.put([1], [2])
+      Potion.put([1], [2])
       [1,2]
-      iex> Potion.put(%{map: "some content"}, add: "some content")
+      Potion.put(%{map: "some content"}, add: "some content")
       %{map: "some content", add: "some content"}
-      iex> Potion.put(%{map: "some content"}, [add: "some content"])
+      Potion.put(%{map: "some content"}, [add: "some content"])
       %{map: "some content", add: "some content"}
-      iex> Potion.put(%{map: "some content"}, %{add: "some content"})
+      Potion.put(%{map: "some content"}, %{add: "some content"})
       %{map: "some content", add: "some content"}
-      iex> Potion.put(%{map: "some content"}, %{map: "some content!"})
+      Potion.put(%{map: "some content"}, %{map: "some content!"})
       %{map: "some content!"}
-      iex> Potion.put({1,2,3}, 4)
+      Potion.put({1,2,3}, 4)
       {1,2,3,4}
 
   """
@@ -99,21 +110,24 @@ defmodule Potion do
   end
 
   @doc """
+
+  Puts the given value
+
   ## Examples
 
-      iex> Potion.put_first([1], 2)
+      Potion.put_first([1], 2)
       [2,1]
-      iex> Potion.put_first([1], [2])
+      Potion.put_first([1], [2])
       [2,1]
-      iex> Potion.put_first(%{map: "some content"}, add: "some content")
+      Potion.put_first(%{map: "some content"}, add: "some content")
       %{add: "some content", map: "some content"}
-      iex> Potion.put_first(%{map: "some content"}, [add: "some content"])
+      Potion.put_first(%{map: "some content"}, [add: "some content"])
       %{add: "some content", map: "some content"}
-      iex> Potion.put_first(%{map: "some content"}, %{add: "some content"})
+      Potion.put_first(%{map: "some content"}, %{add: "some content"})
       %{add: "some content", map: "some content"}
-      iex> Potion.put_first(%{map: "some content"}, %{map: "some content!"})
+      Potion.put_first(%{map: "some content"}, %{map: "some content!"})
       %{map: "some content"}
-      iex> Potion.put_first({1,2,3}, 4)
+      Potion.put_first({1,2,3}, 4)
       {4,1,2,3}
 
   """
@@ -123,19 +137,22 @@ defmodule Potion do
   end
 
   @doc """
+
+  Deletes the given value from  key
+
   ## Examples
 
-      iex> Potion.unset([1,2], 0)
+      Potion.unset([1,2], 0)
       [2]
-      iex> Potion.unset(%{a: 1, b: 2}, :a)
+      Potion.unset(%{a: 1, b: 2}, :a)
       %{b: 2}
-      iex> Potion.unset({1,2}, 0)
+      Potion.unset({1,2}, 0)
       {2}
-      iex> Potion.unset([1,2], [0,1])
+      Potion.unset([1,2], [0,1])
       []
-      iex> Potion.unset(%{a: 1, b: 2}, [:a, :b])
+      Potion.unset(%{a: 1, b: 2}, [:a, :b])
       %{}
-      iex> Potion.unset({1,2}, [1,2])
+      Potion.unset({1,2}, [1,2])
       {1}
 
   """
@@ -145,19 +162,22 @@ defmodule Potion do
   end
 
   @doc """
+
+  Deletes the given value from  value
+
   ## Examples
 
-      iex> Potion.unset_value([1,2], 2)
+      Potion.unset_value([1,2], 2)
       [1]
-      iex> Potion.unset_value([1,2], [0,1])
+      Potion.unset_value([1,2], [0,1])
       [2]
-      iex> Potion.unset_value(%{a: 1, b: 2}, 1)
+      Potion.unset_value(%{a: 1, b: 2}, 1)
       %{b: 2}
-      iex> Potion.unset_value(%{a: 1, b: 2}, [1, 2])
+      Potion.unset_value(%{a: 1, b: 2}, [1, 2])
       %{}
-      iex> Potion.unset_value({1,2}, 2)
+      Potion.unset_value({1,2}, 2)
       {1}
-      iex> Potion.unset_value({1,2}, [1,2])
+      Potion.unset_value({1,2}, [1,2])
       {}
 
   """
