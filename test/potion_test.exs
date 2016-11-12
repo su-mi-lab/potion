@@ -25,6 +25,7 @@ defmodule PotionTest do
     assert Potion.get([1,2,3], 0) == 1
     assert Potion.get({1,2,3}, 0) == 1
     assert Potion.get([1,"2",3], 1) == "2"
+    assert Potion.get([index: 1, index2: 2], :index2) == 2
     assert Potion.get({:ok, "some content"}, :ok) == "some content"
     assert Potion.get(%{map: "some content"}, :map) == "some content"
 
@@ -79,6 +80,7 @@ defmodule PotionTest do
     assert Potion.unset([1,2], 0) == [2]
     assert Potion.unset([1,2], [0,1]) == []
     assert Potion.unset([1,2], [1,2]) == [1]
+    assert Potion.unset([1,2,3], [0,2,1]) == []
     assert Potion.unset([1,"2"], 1) == [1]
     assert Potion.unset([1,2], 3) == [1,2]
     assert Potion.unset(%{a: 1, b: 2}, :a) == %{b: 2}

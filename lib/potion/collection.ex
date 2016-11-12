@@ -19,6 +19,17 @@ defprotocol Potion.Collection do
 end
 
 defimpl Potion.Collection, for: List do
+
+  def get(list, key, default) when is_atom(key) do
+    Enum.reduce(list, [], fn({index, value}, acc) ->
+      case index do
+        ^key -> [value]
+        _ -> acc
+      end
+    end)
+    |> Enum.at(0, default)
+  end
+
   def get(list, key, default) do
     Enum.at(list, key, default)
   end
@@ -44,7 +55,7 @@ defimpl Potion.Collection, for: List do
   end
 
   def unset(list, keys) when is_list(keys) do
-    Enum.reduce(Enum.reverse(keys), list, fn(key, acc) ->
+    Enum.reduce(keys |> Enum.sort |> Enum.reverse, list, fn(key, acc) ->
       List.delete_at(acc, key)
     end)
   end
