@@ -112,4 +112,34 @@ defmodule PotionTest do
     assert Potion.unset_value(%{a: "some content", b: "some content", c: 3}, ["some content", 3]) == %{}
   end
 
+  test "test Potion to_atom" do
+    assert Potion.to_atom("atom") == :atom
+    assert Potion.to_atom('atom') == :atom
+    assert Potion.to_atom(:atom) == :atom
+  end
+
+  test "test Potion to_string" do
+    assert Potion.to_string("string") == "string"
+    assert Potion.to_string('string') == "string"
+    assert Potion.to_string(:string) == "string"
+    assert Potion.to_string(1) == "1"
+    assert Potion.to_string(1.0) == "1.0"
+  end
+
+  test "test Potion to_float" do
+    assert Potion.to_float("1.0") == 1.0
+    assert Potion.to_float("1") == 1.0
+    assert Potion.to_float('1.0') == 1.0
+    assert Potion.to_float(1) == 1.0
+    assert Potion.to_float(1.0) == 1.0
+  end
+
+  test "test Potion to_integer" do
+    assert Potion.to_integer("1") == 1
+    assert Potion.to_integer("1.0") == 1
+    assert Potion.to_integer('1') == 1
+    assert Potion.to_integer(1) == 1
+    assert Potion.to_integer(1.0) == 1
+    assert Potion.to_integer(1.5) == 1
+  end
 end
