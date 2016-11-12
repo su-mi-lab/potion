@@ -186,4 +186,90 @@ defmodule Potion do
     Potion.Collection.unset_value(data, value)
   end
 
+  @doc """
+
+  Converts atom
+
+  ## Examples
+
+      Potion.to_atom("atom")
+      :atom
+      Potion.to_atom('atom')
+      :atom
+      Potion.to_atom(:atom)
+      :atom
+
+  """
+  @spec to_atom(BitString.t | List.t | Atom.t) :: Atom.t
+  def to_atom(item) do
+    Potion.Convert.to_atom(item)
+  end
+
+  @doc """
+
+  Converts string
+
+  ## Examples
+
+      Potion.to_string("string")
+      "string"
+      Potion.to_string('string')
+      "string"
+      Potion.to_string(:string)
+      "string"
+      Potion.to_string(1)
+      "1"
+      Potion.to_string(1.0)
+      "1.0"
+
+  """
+  @spec to_string(BitString.t | List.t | Atom.t | Float.t | Integer.t) :: BitString.t
+  def to_string(item) do
+    Potion.Convert.to_string(item)
+  end
+
+    @doc """
+
+    Converts float
+
+    ## Examples
+
+        Potion.to_float("1.0")
+        1.0
+        Potion.to_float('1.0')
+        1.0
+        Potion.to_float(1)
+        1.0
+        Potion.to_float(1.0)
+        1.0
+
+    """
+    @spec to_float(BitString.t | List.t |  Float.t | Integer.t) :: Float.t
+    def to_float(item) do
+      Potion.Convert.to_float(item)
+    end
+
+    @doc """
+
+    Converts integer
+
+    ## Examples
+
+        Potion.to_integer("1")
+        1
+        Potion.to_integer('1')
+        1
+        Potion.to_integer(1)
+        1
+        Potion.to_integer(1.0)
+        1
+        Potion.to_integer(1.5)
+        1
+
+    """
+    @spec to_integer(BitString.t | List.t |  Float.t | Integer.t) :: Integer.t
+    def to_integer(item) do
+      Potion.Convert.to_integer(item)
+    end
+
 end
