@@ -1,6 +1,9 @@
 defmodule PotionTest do
   use ExUnit.Case
+
   doctest Potion
+
+  defstruct name: "potion", age: 14
 
   test "test Potion empty" do
     assert Potion.empty?([]) == true
@@ -10,6 +13,8 @@ defmodule PotionTest do
     assert Potion.empty?(false) == true
     assert Potion.empty?(:false) == true
     assert Potion.empty?(nil) == true
+    assert Potion.empty?(__struct__) == true
+
 
     assert Potion.empty?([1,2]) == false
     assert Potion.empty?(%{map: "some content"}) == false
@@ -28,6 +33,7 @@ defmodule PotionTest do
     assert Potion.get([index: 1, index2: 2], :index2) == 2
     assert Potion.get({:ok, "some content"}, :ok) == "some content"
     assert Potion.get(%{map: "some content"}, :map) == "some content"
+    assert Potion.get(__struct__, :name) == "potion"
 
     assert Potion.get([1,2,3], 4) == nil
     assert Potion.get({1,2,3}, 4) == nil
@@ -142,4 +148,10 @@ defmodule PotionTest do
     assert Potion.to_integer(1.0) == 1
     assert Potion.to_integer(1.5) == 1
   end
+
+  test "test Potion debug" do
+#    Potion.debug(__struct__)
+#    Potion.debug([1,2.0,__struct__,{1,{1,2,3},3},[:add,1],:sss, [1,[1,2.1,:sss, [1,%{a: "some content", b: "some content", c: 3}]]]])
+  end
+
 end

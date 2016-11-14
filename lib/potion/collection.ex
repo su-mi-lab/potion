@@ -1,4 +1,6 @@
 defprotocol Potion.Collection do
+  @fallback_to_any true
+
   @spec get(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t, any) :: any
   def get(data, key, default)
 
@@ -183,6 +185,11 @@ defimpl Potion.Collection, for: Tuple do
 end
 
 defimpl Potion.Collection, for: Any do
+
+  def get(map, key, default) when is_map(map) do
+    Potion.Collection.get(Map.from_struct(map), key, default)
+  end
+
   def get(_data, _key, _default) do
     raise RuntimeError, message: "invalid argument"
   end

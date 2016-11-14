@@ -272,4 +272,25 @@ defmodule Potion do
       Potion.Convert.to_integer(item)
     end
 
+    @doc """
+
+    debug
+
+    ## Examples
+
+        Potion.debug(data)
+
+    """
+    @spec debug(any) :: String.t
+    def debug(data) do
+      {type, str} = Potion.Debug.debug(data, 0)
+      message = """
+
+【Potion Debug】
+(#{type})
+#{str}
+"""
+      IO.puts(message)
+    end
+
 end
