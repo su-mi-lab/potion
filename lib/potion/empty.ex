@@ -34,5 +34,5 @@ defimpl Potion.Empty, for: Tuple do
 end
 
 defimpl Potion.Empty, for: Any do
-  def empty?(_), do: true
+  def empty?(_), do: false
 end

@@ -278,10 +278,27 @@ defmodule Potion do
 
     ## Examples
 
-        Potion.debug(data)
+        Potion.debug([1,2,3])
+        【Potion Debug】
+        (List)
+           [0] => Integer: 1
+           [1] => Integer: 2
+           [2] => Integer: 3
+
+        Potion.debug(%{a: "some content", b: "some content"})
+        【Potion Debug】
+        (Map)
+           %{:a} => BitString: some content
+           %{:b} => BitString: some content
+
+         Potion.debug(__struct__)
+         【Potion Debug】
+         (Struct)
+            %{:age} => Integer: 14
+            %{:name} => BitString: potion
 
     """
-    @spec debug(any) :: String.t
+    @spec debug(String.t | Atom.t | Integer.t | Float.t | List.t | Map.t | Tuple.t) :: String.t
     def debug(data) do
       {type, str} = Potion.Debug.debug(data, 0)
       message = """
