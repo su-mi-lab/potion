@@ -1,7 +1,7 @@
 defprotocol Potion.Debug do
   @fallback_to_any true
 
-  @spec debug(any, Integer.t) :: String.t
+  @spec debug(String.t | Atom.t | Integer.t | Float.t | List.t | Map.t | Tuple.t, Integer.t) :: String.t
   def debug(data, nest)
 end
 
@@ -90,6 +90,14 @@ defimpl Potion.Debug, for: Tuple do
 
 end
 
+defimpl Potion.Debug, for: Function do
+  def debug(_fnc, _nest), do: {:Function, ""}
+end
+
+defimpl Potion.Debug, for: PID do
+  def debug(_pid, _nest), do: {:PID, ""}
+end
+
 defimpl Potion.Debug, for: Any do
 
   def debug(map, nest) when is_map(map) do
@@ -101,7 +109,7 @@ defimpl Potion.Debug, for: Any do
     end
   end
 
-  def debug(_data, _nest) do
+  def debug(data, _nest) do
     raise RuntimeError, message: "invalid argument"
   end
 end

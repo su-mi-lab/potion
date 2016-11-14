@@ -150,9 +150,4 @@ defmodule PotionTest do
     assert Potion.to_integer(1.5) == 1
   end
 
-  test "test Potion debug" do
-#    Potion.debug(__struct__)
-#    Potion.debug([1,2.0,__struct__,{1,{1,2,3},3},[:add,1],:sss, [1,[1,2.1,:sss, [1,%{a: "some content", b: "some content", c: 3}]]]])
-  end
-
 end
