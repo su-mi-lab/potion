@@ -9,7 +9,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:potion, "~> 1.2.1"}]
+      [{:potion, "~> 1.3.2"}]
     end
     ```
 

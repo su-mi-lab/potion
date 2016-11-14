@@ -1,4 +1,6 @@
 defprotocol Potion.Empty do
+  @fallback_to_any true
+
   @spec empty?(any) :: boolean
   def empty?(data)
 end
