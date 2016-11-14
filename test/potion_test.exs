@@ -13,8 +13,6 @@ defmodule PotionTest do
     assert Potion.empty?(false) == true
     assert Potion.empty?(:false) == true
     assert Potion.empty?(nil) == true
-    assert Potion.empty?(__struct__) == true
-
 
     assert Potion.empty?([1,2]) == false
     assert Potion.empty?(%{map: "some content"}) == false
@@ -24,6 +22,9 @@ defmodule PotionTest do
     assert Potion.empty?(1.0) == false
     assert Potion.empty?(true) == false
     assert Potion.empty?(:true) == false
+    assert Potion.empty?(__struct__) == false
+    assert Potion.empty?(self()) == false
+
   end
 
   test "test Potion get" do
