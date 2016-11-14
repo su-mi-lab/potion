@@ -1,4 +1,6 @@
 defprotocol Potion.Convert do
+  @fallback_to_any true
+
   @spec to_atom(BitString.t | List.t | Atom.t) :: Atom.t
   def to_atom(item)
 
