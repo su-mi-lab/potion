@@ -13,8 +13,6 @@ defmodule PotionTest do
     assert Potion.empty?(false) == true
     assert Potion.empty?(:false) == true
     assert Potion.empty?(nil) == true
-    assert Potion.empty?(__struct__) == true
-
 
     assert Potion.empty?([1,2]) == false
     assert Potion.empty?(%{map: "some content"}) == false
@@ -24,6 +22,9 @@ defmodule PotionTest do
     assert Potion.empty?(1.0) == false
     assert Potion.empty?(true) == false
     assert Potion.empty?(:true) == false
+    assert Potion.empty?(__struct__) == false
+    assert Potion.empty?(self()) == false
+
   end
 
   test "test Potion get" do
@@ -147,11 +148,6 @@ defmodule PotionTest do
     assert Potion.to_integer(1) == 1
     assert Potion.to_integer(1.0) == 1
     assert Potion.to_integer(1.5) == 1
-  end
-
-  test "test Potion debug" do
-#    Potion.debug(__struct__)
-#    Potion.debug([1,2.0,__struct__,{1,{1,2,3},3},[:add,1],:sss, [1,[1,2.1,:sss, [1,%{a: "some content", b: "some content", c: 3}]]]])
   end
 
 end
