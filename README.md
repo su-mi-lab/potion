@@ -1,4 +1,5 @@
 # Potion
+[![hex.pm version](https://img.shields.io/hexpm/v/potion.svg)](https://hex.pm/packages/potion) [![hex.pm](https://img.shields.io/hexpm/l/potion.svg)](https://github.com/su-mi-lab/potion/blob/develop/LICENSE)
 
 ## Installation
 
@@ -9,14 +10,6 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     ```elixir
     def deps do
       [{:potion, "~> 1.2.1"}]
-    end
-    ```
-
-  2. Ensure `potion` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:potion]]
     end
     ```
 
