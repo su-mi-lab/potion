@@ -109,7 +109,7 @@ defimpl Potion.Debug, for: Any do
     end
   end
 
-  def debug(data, _nest) do
+  def debug(_data, _nest) do
     raise RuntimeError, message: "invalid argument"
   end
 end
