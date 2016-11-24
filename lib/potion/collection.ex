@@ -198,8 +198,24 @@ defimpl Potion.Collection, for: Any do
     raise RuntimeError, message: "invalid argument"
   end
 
+  def put(map, item) when is_map(map) and is_map(item) do
+    Map.merge(map, item)
+  end
+
+  def put(map, [h] = _item) when is_map(map) do
+    Map.put(map, Potion.get(h, 0), Potion.get(h, 1))
+  end
+
   def put(_data, _item) do
     raise RuntimeError, message: "invalid argument"
+  end
+
+  def put_first(map, item) when is_map(map) and is_map(item) do
+    Map.merge(item, map)
+  end
+
+  def put_first(map, [h] = _item) when is_map(map) do
+    Map.put_new(map, Potion.get(h, 0), Potion.get(h, 1))
   end
 
   def put_first(_data, _item) do
