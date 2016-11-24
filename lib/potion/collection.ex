@@ -1,4 +1,5 @@
 defprotocol Potion.Collection do
+  @moduledoc false
   @fallback_to_any true
 
   @spec get(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t, any) :: any
