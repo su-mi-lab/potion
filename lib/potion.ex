@@ -271,43 +271,4 @@ defmodule Potion do
     def to_integer(item) do
       Potion.Convert.to_integer(item)
     end
-
-    @doc """
-
-    debug
-
-    ## Examples
-
-        Potion.debug([1,2,3])
-        【Potion Debug】
-        (List)
-           [0] => Integer: 1
-           [1] => Integer: 2
-           [2] => Integer: 3
-
-        Potion.debug(%{a: "some content", b: "some content"})
-        【Potion Debug】
-        (Map)
-           %{:a} => BitString: some content
-           %{:b} => BitString: some content
-
-         Potion.debug(__struct__)
-         【Potion Debug】
-         (Struct)
-            %{:age} => Integer: 14
-            %{:name} => BitString: potion
-
-    """
-    @spec debug(String.t | Atom.t | Integer.t | Float.t | List.t | Map.t | Tuple.t) :: String.t
-    def debug(data) do
-      {type, str} = Potion.Debug.debug(data, 0)
-      message = """
-
-【Potion Debug】
-(#{type})
-#{str}
-"""
-      IO.puts(message)
-    end
-
 end

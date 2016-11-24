@@ -65,6 +65,10 @@ defmodule PotionTest do
     assert Potion.put({1,2,3}, 4) == {1,2,3,4}
     assert Potion.put({1,2,3}, :add) == {1,2,3,:add}
     assert Potion.put({1,2,3}, [1,2]) == {1,2,3,[1,2]}
+    assert Potion.put(__struct__, %{name: "some content"}) == %PotionTest{name: "some content", age: 14}
+    assert Potion.put(__struct__, name: "some content") == %PotionTest{name: "some content", age: 14}
+    assert Potion.put(__struct__, [name: "some content"]) == %PotionTest{name: "some content", age: 14}
+
   end
 
   test "test Potion put_first" do
@@ -81,6 +85,9 @@ defmodule PotionTest do
     assert Potion.put_first({1,2,3}, 4) == {4,1,2,3}
     assert Potion.put_first({1,2,3}, :add) == {:add,1,2,3}
     assert Potion.put_first({1,2,3}, [1,2]) == {[1,2],1,2,3}
+    assert Potion.put_first(__struct__, %{name: "some content"}) == %PotionTest{name: "potion", age: 14}
+    assert Potion.put_first(__struct__, name: "some content") == %PotionTest{name: "potion", age: 14}
+    assert Potion.put_first(__struct__, [name: "some content"]) == %PotionTest{name: "potion", age: 14}
   end
 
   test "test Potion unset" do
