@@ -1,4 +1,5 @@
 defprotocol Potion.Convert do
+  @moduledoc false
   @fallback_to_any true
 
   @spec to_atom(BitString.t | List.t | Atom.t) :: Atom.t

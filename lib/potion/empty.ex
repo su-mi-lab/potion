@@ -1,4 +1,5 @@
 defprotocol Potion.Empty do
+  @moduledoc false
   @fallback_to_any true
 
   @spec empty?(any) :: boolean
