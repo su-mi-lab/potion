@@ -228,47 +228,47 @@ defmodule Potion do
     Potion.Convert.to_string(item)
   end
 
-    @doc """
+  @doc """
 
-    Converts float
+  Converts float
 
-    ## Examples
+  ## Examples
 
-        Potion.to_float("1.0")
-        1.0
-        Potion.to_float('1.0')
-        1.0
-        Potion.to_float(1)
-        1.0
-        Potion.to_float(1.0)
-        1.0
+      Potion.to_float("1.0")
+      1.0
+      Potion.to_float('1.0')
+      1.0
+      Potion.to_float(1)
+      1.0
+      Potion.to_float(1.0)
+      1.0
 
-    """
-    @spec to_float(BitString.t | List.t |  Float.t | Integer.t) :: Float.t
-    def to_float(item) do
-      Potion.Convert.to_float(item)
-    end
+  """
+  @spec to_float(BitString.t | List.t |  Float.t | Integer.t) :: Float.t
+  def to_float(item) do
+    Potion.Convert.to_float(item)
+  end
 
-    @doc """
+  @doc """
 
-    Converts integer
+  Converts integer
 
-    ## Examples
+  ## Examples
 
-        Potion.to_integer("1")
-        1
-        Potion.to_integer('1')
-        1
-        Potion.to_integer(1)
-        1
-        Potion.to_integer(1.0)
-        1
-        Potion.to_integer(1.5)
-        1
+      Potion.to_integer("1")
+      1
+      Potion.to_integer('1')
+      1
+      Potion.to_integer(1)
+      1
+      Potion.to_integer(1.0)
+      1
+      Potion.to_integer(1.5)
+      1
 
-    """
-    @spec to_integer(BitString.t | List.t |  Float.t | Integer.t) :: Integer.t
-    def to_integer(item) do
-      Potion.Convert.to_integer(item)
-    end
+  """
+  @spec to_integer(BitString.t | List.t |  Float.t | Integer.t) :: Integer.t
+  def to_integer(item) do
+    Potion.Convert.to_integer(item)
+  end
 end
