@@ -1,0 +1,12 @@
+elixir: &defaults
+  image: elixir:latest
+  working_dir: /app
+  volumes:
+    - .:/app
+  entrypoint: ["elixir"]
+iex:
+  <<: *defaults
+  entrypoint: ["iex"]
+mix:
+  <<: *defaults
+  entrypoint: ["mix"]
