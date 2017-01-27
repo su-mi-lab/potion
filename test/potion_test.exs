@@ -22,7 +22,7 @@ defmodule PotionTest do
     assert Potion.empty?(1.0) == false
     assert Potion.empty?(true) == false
     assert Potion.empty?(:true) == false
-    assert Potion.empty?(__struct__) == false
+    assert Potion.empty?(%PotionTest{}) == false
     assert Potion.empty?(self()) == false
 
   end
@@ -34,7 +34,7 @@ defmodule PotionTest do
     assert Potion.get([index: 1, index2: 2], :index2) == 2
     assert Potion.get({:ok, "some content"}, :ok) == "some content"
     assert Potion.get(%{map: "some content"}, :map) == "some content"
-    assert Potion.get(__struct__, :name) == "potion"
+    assert Potion.get(%PotionTest{}, :name) == "potion"
 
     assert Potion.get([1,2,3], 4) == nil
     assert Potion.get({1,2,3}, 4) == nil
@@ -65,9 +65,9 @@ defmodule PotionTest do
     assert Potion.put({1,2,3}, 4) == {1,2,3,4}
     assert Potion.put({1,2,3}, :add) == {1,2,3,:add}
     assert Potion.put({1,2,3}, [1,2]) == {1,2,3,[1,2]}
-    assert Potion.put(__struct__, %{name: "some content"}) == %PotionTest{name: "some content", age: 14}
-    assert Potion.put(__struct__, name: "some content") == %PotionTest{name: "some content", age: 14}
-    assert Potion.put(__struct__, [name: "some content"]) == %PotionTest{name: "some content", age: 14}
+    assert Potion.put(%PotionTest{}, %{name: "some content"}) == %PotionTest{name: "some content", age: 14}
+    assert Potion.put(%PotionTest{}, name: "some content") == %PotionTest{name: "some content", age: 14}
+    assert Potion.put(%PotionTest{}, [name: "some content"]) == %PotionTest{name: "some content", age: 14}
 
   end
 
@@ -85,9 +85,9 @@ defmodule PotionTest do
     assert Potion.put_first({1,2,3}, 4) == {4,1,2,3}
     assert Potion.put_first({1,2,3}, :add) == {:add,1,2,3}
     assert Potion.put_first({1,2,3}, [1,2]) == {[1,2],1,2,3}
-    assert Potion.put_first(__struct__, %{name: "some content"}) == %PotionTest{name: "potion", age: 14}
-    assert Potion.put_first(__struct__, name: "some content") == %PotionTest{name: "potion", age: 14}
-    assert Potion.put_first(__struct__, [name: "some content"]) == %PotionTest{name: "potion", age: 14}
+    assert Potion.put_first(%PotionTest{}, %{name: "some content"}) == %PotionTest{name: "potion", age: 14}
+    assert Potion.put_first(%PotionTest{}, name: "some content") == %PotionTest{name: "potion", age: 14}
+    assert Potion.put_first(%PotionTest{}, [name: "some content"]) == %PotionTest{name: "potion", age: 14}
   end
 
   test "test Potion unset" do
