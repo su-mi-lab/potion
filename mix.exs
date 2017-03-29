@@ -3,7 +3,7 @@ defmodule Potion.Mixfile do
 
   def project do
     [app: :potion,
-     version: "1.4.0",
+     version: "1.5.0",
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
