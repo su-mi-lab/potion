@@ -19,6 +19,9 @@ defprotocol Potion.Collection do
 
   @spec unset_value(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t | List.t) :: any
   def unset_value(data, value)
+
+  @spec change_key_atom(Map.t) :: Map.t
+  def change_key_atom(map)
 end
 
 defimpl Potion.Collection, for: List do
@@ -75,6 +78,10 @@ defimpl Potion.Collection, for: List do
 
   def unset_value(list, value) do
     List.delete(list, value)
+  end
+
+  def change_key_atom(_map) do
+    raise RuntimeError, message: "invalid argument"
   end
 end
 
@@ -141,6 +148,10 @@ defimpl Potion.Collection, for: Map do
       end
     end)
   end
+
+  def change_key_atom(map) do
+    Map.new(map, fn({k, v}) -> {Potion.to_atom(k), v} end)
+  end
 end
 
 defimpl Potion.Collection, for: Tuple do
@@ -182,6 +193,10 @@ defimpl Potion.Collection, for: Tuple do
 
   def unset_value(tuple, value) do
     Tuple.to_list(tuple) |> Potion.Collection.unset_value(value) |> List.to_tuple
+  end
+
+  def change_key_atom(_map) do
+    raise RuntimeError, message: "invalid argument"
   end
 end
 
@@ -228,6 +243,10 @@ defimpl Potion.Collection, for: Any do
   end
 
   def unset_value(_data, _value) do
+    raise RuntimeError, message: "invalid argument"
+  end
+
+  def change_key_atom(_map) do
     raise RuntimeError, message: "invalid argument"
   end
 end

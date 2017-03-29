@@ -271,4 +271,21 @@ defmodule Potion do
   def to_integer(item) do
     Potion.Convert.to_integer(item)
   end
+
+  @doc """
+
+  Change Key Atom
+
+  ## Examples
+
+      Potion.change_key_atom(%{:key => 1, "key2" => 2}})
+      %{key: 1, keys: 2}
+      Potion.change_key_atom(%{"key" => 1, "key2" => 2}})
+      %{key: 1, keys: 2}
+
+  """
+  @spec change_key_atom(Map.t) :: Map.t
+  def change_key_atom(map) do
+    Potion.Collection.change_key_atom(map)
+  end
 end
