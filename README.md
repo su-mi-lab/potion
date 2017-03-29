@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:potion, "~> 1.4"}]
+      [{:potion, "~> 1.5"}]
     end
     ```
 
