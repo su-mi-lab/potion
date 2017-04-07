@@ -1,5 +1,13 @@
 defmodule Potion do
 
+  @moduledoc """
+
+  ## Dependency
+
+      [{:potion, "~> verstion"}]
+
+  """
+
   @doc """
 
   check empty
@@ -59,9 +67,7 @@ defmodule Potion do
       0
   """
   @spec get(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t, any) :: any
-  def get(data, key, default \\ nil) do
-    Potion.Collection.get(data, key, default)
-  end
+  def get(data, key, default \\ nil), do: Potion.Collection.get(data, key, default)
 
   @doc """
 
@@ -78,9 +84,7 @@ defmodule Potion do
 
   """
   @spec trim(Map.t | List.t | Tuple.t) :: Map.t | List.t | Tuple.t
-  def trim(data) do
-    Potion.Collection.trim(data)
-  end
+  def trim(data), do: Potion.Collection.trim(data)
 
   @doc """
 
@@ -105,9 +109,7 @@ defmodule Potion do
 
   """
   @spec put(Map.t | List.t | Tuple.t, any) :: Map.t | List.t | Tuple.t
-  def put(data, item) do
-    Potion.Collection.put(data, item)
-  end
+  def put(data, item), do: Potion.Collection.put(data, item)
 
   @doc """
 
@@ -132,9 +134,7 @@ defmodule Potion do
 
   """
   @spec put_first(Map.t | List.t | Tuple.t, any) :: Map.t | List.t | Tuple.t
-  def put_first(data, item) do
-    Potion.Collection.put_first(data, item)
-  end
+  def put_first(data, item), do: Potion.Collection.put_first(data, item)
 
   @doc """
 
@@ -157,9 +157,7 @@ defmodule Potion do
 
   """
   @spec unset(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t | List.t) :: any
-  def unset(data, key) do
-    Potion.Collection.unset(data, key)
-  end
+  def unset(data, key), do: Potion.Collection.unset(data, key)
 
   @doc """
 
@@ -182,9 +180,7 @@ defmodule Potion do
 
   """
   @spec unset_value(Map.t | List.t | Tuple.t, String.t | Integer.t | Atom.t | List.t) :: any
-  def unset_value(data, value) do
-    Potion.Collection.unset_value(data, value)
-  end
+  def unset_value(data, value), do: Potion.Collection.unset_value(data, value)
 
   @doc """
 
@@ -201,9 +197,7 @@ defmodule Potion do
 
   """
   @spec to_atom(BitString.t | List.t | Atom.t) :: Atom.t
-  def to_atom(item) do
-    Potion.Convert.to_atom(item)
-  end
+  def to_atom(item), do: Potion.Convert.to_atom(item)
 
   @doc """
 
@@ -224,9 +218,7 @@ defmodule Potion do
 
   """
   @spec to_string(BitString.t | List.t | Atom.t | Float.t | Integer.t) :: BitString.t
-  def to_string(item) do
-    Potion.Convert.to_string(item)
-  end
+  def to_string(item), do: Potion.Convert.to_string(item)
 
   @doc """
 
@@ -245,9 +237,7 @@ defmodule Potion do
 
   """
   @spec to_float(BitString.t | List.t |  Float.t | Integer.t) :: Float.t
-  def to_float(item) do
-    Potion.Convert.to_float(item)
-  end
+  def to_float(item), do: Potion.Convert.to_float(item)
 
   @doc """
 
@@ -268,9 +258,7 @@ defmodule Potion do
 
   """
   @spec to_integer(BitString.t | List.t |  Float.t | Integer.t) :: Integer.t
-  def to_integer(item) do
-    Potion.Convert.to_integer(item)
-  end
+  def to_integer(item), do: Potion.Convert.to_integer(item)
 
   @doc """
 
@@ -285,7 +273,5 @@ defmodule Potion do
 
   """
   @spec change_key_atom(Map.t) :: Map.t
-  def change_key_atom(map) do
-    Potion.Collection.change_key_atom(map)
-  end
+  def change_key_atom(map), do: Potion.Collection.change_key_atom(map)
 end

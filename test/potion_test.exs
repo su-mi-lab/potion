@@ -158,10 +158,6 @@ defmodule PotionTest do
   end
 
   test "test Potion change_key_atom" do
-
-  IO.inspect(Potion.change_key_atom(%{:key => 1, "key2" => 2}))
-  IO.inspect(Potion.change_key_atom(%{"key" => 1, "key2" => 2}))
-
     assert Potion.change_key_atom(%{:key => 1, "key2" => 2}) == %{key: 1, key2: 2}
     assert Potion.change_key_atom(%{"key" => 1, "key2" => 2}) == %{key: 1, key2: 2}
   end
