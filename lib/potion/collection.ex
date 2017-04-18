@@ -27,13 +27,14 @@ end
 defimpl Potion.Collection, for: List do
 
   def get(list, key, default) when is_atom(key) do
-    Enum.reduce(list, [], fn({index, value}, acc) ->
+    res = Enum.reduce(list, [], fn({index, value}, acc) ->
       case index do
         ^key -> [value]
         _ -> acc
       end
     end)
-    |> Enum.at(0, default)
+
+    Enum.at(res, 0, default)
   end
 
   def get(list, key, default) do
