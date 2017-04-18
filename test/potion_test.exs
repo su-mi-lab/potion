@@ -63,7 +63,7 @@ defmodule PotionTest do
     assert Potion.put(%{map: "some content"}, %{add: "some content"}) == %{map: "some content", add: "some content"}
     assert Potion.put(%{map: "some content"}, %{map: "some content!"}) == %{map: "some content!"}
     assert Potion.put({1, 2, 3}, 4) == {1, 2, 3, 4}
-    assert Potion.put({1, 2, 3}, :add) == {1, 2, 3,:add}
+    assert Potion.put({1, 2, 3}, :add) == {1, 2, 3, :add}
     assert Potion.put({1, 2, 3}, [1, 2]) == {1, 2, 3, [1, 2]}
     assert Potion.put(%PotionTest{}, %{name: "some content"}) == %PotionTest{name: "some content", age: 14}
     assert Potion.put(%PotionTest{}, name: "some content") == %PotionTest{name: "some content", age: 14}
@@ -94,7 +94,7 @@ defmodule PotionTest do
     assert Potion.unset([1, 2], 0) == [2]
     assert Potion.unset([1, 2], [0, 1]) == []
     assert Potion.unset([1, 2], [1, 2]) == [1]
-    assert Potion.unset([1, 2,3], [0, 2, 1]) == []
+    assert Potion.unset([1, 2, 3], [0, 2, 1]) == []
     assert Potion.unset([1, "2"], 1) == [1]
     assert Potion.unset([1, 2], 3) == [1, 2]
     assert Potion.unset(%{a: 1, b: 2}, :a) == %{b: 2}
@@ -110,19 +110,19 @@ defmodule PotionTest do
 
   test "test Potion unset_value" do
     assert Potion.unset_value([1, 2], 2) == [1]
-    assert Potion.unset_value([1, 2], [0,1]) == [2]
-    assert Potion.unset_value([1, 2], [1,2]) == []
+    assert Potion.unset_value([1, 2], [0, 1]) == [2]
+    assert Potion.unset_value([1, 2], [1, 2]) == []
     assert Potion.unset_value([1, "2"], "2") == [1]
-    assert Potion.unset_value([1, 2], 3) == [1,2]
-    assert Potion.unset_value({1, 2}, 0) == {1,2}
-    assert Potion.unset_value({1, 2}, [0,1]) == {2}
-    assert Potion.unset_value({1, 2}, [1,2]) == {}
+    assert Potion.unset_value([1, 2], 3) == [1, 2]
+    assert Potion.unset_value({1, 2}, 0) == {1, 2}
+    assert Potion.unset_value({1, 2}, [0, 1]) == {2}
+    assert Potion.unset_value({1, 2}, [1, 2]) == {}
     assert Potion.unset_value({1, 2}, 2) == {1}
-    assert Potion.unset_value({1, 2, :number}, 2) == {1,:number}
+    assert Potion.unset_value({1, 2, :number}, 2) == {1, :number}
     assert Potion.unset_value(%{a: 1, b: 2}, 1) == %{b: 2}
     assert Potion.unset_value(%{a: "some content", b: "some content", c: 3}, "some content") == %{c: 3}
     assert Potion.unset_value(%{a: 1, b: 2}, [1, 2]) == %{}
-    assert Potion.unset_value(%{a: 1, b: 2}, [1,3]) == %{b: 2}
+    assert Potion.unset_value(%{a: 1, b: 2}, [1, 3]) == %{b: 2}
     assert Potion.unset_value(%{a: "some content", b: "some content", c: 3}, ["some content", 3]) == %{}
   end
 
