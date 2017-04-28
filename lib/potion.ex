@@ -41,9 +41,7 @@ defmodule Potion do
       false
   """
   @spec empty?(any) :: boolean
-  def empty?(data) do
-    Potion.Empty.empty?(data)
-  end
+  def empty?(data), do: Potion.Empty.empty?(data)
 
   @doc """
 
